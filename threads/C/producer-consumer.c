@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <unistd.h>
 
 #define BUF_SIZE 3		/* Size of shared buffer */
 
@@ -18,38 +19,43 @@ void *consumer (void *param);
 
 int main(int argc, char *argv[]) {
 
-	pthread_t tid1, tid2;  /* thread identifiers */
+	pthread_t tid1, tid2, tid3;  /* thread identifiers */
 	int i;
 
 	/* create the threads; may be any number, in general */
 	if(pthread_create(&tid1, NULL, producer, NULL) != 0) {
-		fprintf(stderr, "Unable to create producer thread\n");
+		fprintf(stderr, "Producer error\n");
 		exit(1);
 	}
 
 	if(pthread_create(&tid2, NULL, consumer, NULL) != 0) {
-		fprintf(stderr, "Unable to create consumer thread\n");
+		fprintf(stderr, "Consumer error\n");
+		exit(1);
+	}
+
+	if(pthread_create(&tid3, NULL, consumer, NULL) != 0) {
+		fprintf(stderr, "Consumer error\n");
 		exit(1);
 	}
 
 	/* wait for created thread to exit */
 	pthread_join(tid1, NULL);
 	pthread_join(tid2, NULL);
-	printf("Parent quiting\n");
+	pthread_join(tid3, NULL);
+	printf("The end\n");
 
 	return 0;
 }
 
 /* Produce value(s) */
 void *producer(void *param) {
-
-	int i;
-	for (i=1; i<=20; i++) {
+	int i = 1;
+	while(1) {
 		
 		/* Insert into buffer */
-		pthread_mutex_lock (&m);	
+		// pthread_mutex_lock (&m);	
 			if (num > BUF_SIZE) {
-				exit(1);  /* overflow */
+				exit(1);  /* overf */
 			}
 
 			while (num == BUF_SIZE) {  /* block if buffer is full */
@@ -60,9 +66,11 @@ void *producer(void *param) {
 			buffer[add] = i;
 			add = (add+1) % BUF_SIZE;
 			num++;
+			i++;
+			usleep(300000);
 			printf ("producer: inserted %d\n", i);
 			fflush (stdout);
-		pthread_mutex_unlock (&m);
+		// pthread_mutex_unlock (&m);
 
 		pthread_cond_signal (&c_cons);
 	}
@@ -79,10 +87,7 @@ void *consumer(void *param) {
 
 	while(1) {
 
-		pthread_mutex_lock (&m);
-			if (num < 0) {
-				exit(1);
-			} /* underflow */
+		// pthread_mutex_lock (&m);
 
 			while (num == 0) {  /* block if buffer empty */
 				pthread_cond_wait (&c_cons, &m);
@@ -92,11 +97,15 @@ void *consumer(void *param) {
 			i = buffer[rem];
 			rem = (rem+1) % BUF_SIZE;
 			num--;
-			printf ("Consume value %d\n", i); 
-			fflush(stdout);
-		pthread_mutex_unlock (&m);
+
+			usleep(300000);
+		// pthread_mutex_unlock (&m);
+
+		printf ("Consume value %d\n", i); 
+		fflush(stdout);
 
 		pthread_cond_signal (&c_prod);
+
 
 	}
 	return 0;
