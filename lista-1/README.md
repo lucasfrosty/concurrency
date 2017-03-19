@@ -23,6 +23,7 @@ O **contexto de um processo** pode conter as seguintes informações:
 - Pilha de execução
 - Conteúdo dos registradores
 - Descritores dos arquivos abertos
+____
 
 ##### 5) Como pode ser feita	a	inicialização	e finalização de processos em C	(em sistemas POSIX)? Cite exemplos de funções utilizadas para a gerência do ciclo de processos e explique brevemente como essas funções são implementadas.
 Ao criar um algoritmo (com uma simples função main) já estamos criando um processo. Porém temos comandos como o ```fork()``` que é responsável por criar um _processo filho_ ao processo principal (main) e o ```kill()``` que finaliza um determinado processo. Abaixo uma lista com várias funções utilizadas em C:
@@ -30,12 +31,15 @@ Ao criar um algoritmo (com uma simples função main) já estamos criando um pro
 - ```execve()```: Cria um processo filho a partir de um programa externo e um conjunto de parâmetros.
 - ```exit(status)```: Termina a execução do processo que está acontecendo e retorna seu estado (parâmetro status). Usualmente é usado ```exit(0)```.
 - ```kill()```: Finaliza um determinado processo.
+____
 
 ##### 6) O que são threads e quais as diferenças do uso de threads para o uso de processos? Quais os estados e transições no ciclo de vida das threads?
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+____
 
 ##### 7) Como é o controle do ciclo de vida de threads a partir da API POSIX Threads (PThreads)?
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+____
 
 ##### 8) Descreva as propriedades de Safety e Liveness e porque elas são importantes no âmbito do desenvolvimento de programas concorrentes.
 a) **Safety Property**: É uma propriedade que dá ao desenvolvedor o controle sobre os estados do seu algoritmo, e que dessa forma, ele nunca entre em um estado indesejado (ex: variáveis com valores indesejados). Exemplos de técnicas que levam um algoritmo a ter a _Safety Property_:
@@ -45,6 +49,7 @@ a) **Safety Property**: É uma propriedade que dá ao desenvolvedor o controle s
 b) **Liveness Property**: É uma propriedade que garante que o algoritmo sempre entrará um estado desejado, onde falhas levam à ausência de um comportamento desejado. Exemplos de técnicas de _Liveness Property_:
 - **Terminação**: Garante que em algum momento o programa terminará.
 - **Entrada eventual**: Um processo aguardando entrar em uma região crítica eventualmente terá acesso a ela.
+____
 
 ##### 9)  O  que  é  o  problema  da  seção  crítica?  Dê  exemplos  de  situações  onde  tal  problema acontece.
 A seção crítica são blocos de código onde, para que sua funcionalidade possa ser feita de maneira eficaz, devem satisfazer as seguintes propriedades:
@@ -62,6 +67,7 @@ while (true) {
 Esses protocolos, em pseudo-código, podem ser feitos através do comando <await>, onde os parênteses angulares servem para simular uma instrução atômica. Já em linguagens de alto nível como C, possuem instruções especiais para implementar essas instruções atômicas como a de _Test and Set_, geralmente implementada em _Spin Locks_.
 
 Exemplos (TODO):
+____
 
 ##### 10) Explique o que são locks (travas) e dê um exemplo de código (código em C/C++) do uso de locks para solução do problema da seção	crítica.
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
