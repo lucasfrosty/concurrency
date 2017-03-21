@@ -14,7 +14,7 @@ void __unlock() {
 
 void* secao_critica(void* args) {
 	int count = 0;
-  int x = 0;
+	int x = 0;
 	int thread_index = (int)args;
 
 	// Função loopando 20x
@@ -67,8 +67,7 @@ int main (int argc, char **argv) {
 		printf("%d - Fui criada\n", i);
 	}
 
-	/* Da join nas threads.
-	Essa função pode não ser executada, isso ocorre quando a Thread main termina antes dela */
+	// Dá join nas threads
 	for (i = 1; i < NUM_THREADS+1; i++) {
 		pthread_join(threads[i], NULL);
 		printf("%d - (JOIN) Agora que já fiz meu trabalho, vou embora, tchau!\n", i);
