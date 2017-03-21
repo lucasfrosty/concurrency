@@ -26,8 +26,7 @@ void* secao_critica(void* args) {
 		return inicial;
 	}	*/
 	turn[thread_index] = __sync_fetch_and_add(&number,1);
-
-  printf("%d - Recebi a ficha %d\n", thread_index, turn[thread_index]);
+	printf("%d - Recebi a ficha %d\n", thread_index, turn[thread_index]);
 
 	/* As threads que ainda não foram chamadas irão esperar
 	até sua vez (turn[thread_index] == next) para executar sua seção critica,
@@ -36,7 +35,6 @@ void* secao_critica(void* args) {
  	while (turn[thread_index] != next) {
 		printf("%d - Não é minha vez, fui bloqueada!\n", thread_index);
 	}
-
 	// Protocolo de Entrada - FINAL
 
 	// Seção Crítica - INÍCIO
@@ -48,13 +46,13 @@ void* secao_critica(void* args) {
 	printf("%d - Estou saindo da seção crítica...\n", thread_index);
 	// Seção Crítica - FINAL
 
-  /* Protocolo de Saída - INÍCIO
+	/* Protocolo de Saída - INÍCIO
 	O protocolo de saída nesse caso é apenas incrementar o valor de next,
 	para que assim a próxima thread saia da ESPERA OCUPADA e possa executar sua seção crítica */
 	next++;
 	// Protocolo de Saída - FINAL
-
-  // Seção não crítica
+	 
+	// Seção não crítica
 	printf("%d - Não estou mais na seção crítica\n", thread_index);
 	return (void*) thread_index; // returna ponteiro pra void pq a função é ponteiro pra void
 
