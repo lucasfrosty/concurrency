@@ -14,7 +14,7 @@ void __unlock() {
 
 void* secao_critica(void* args) {
 	int count = 0;
-	int x = 0;
+	// int x = 0;
 	int thread_index = (int)args;
 
 	// Função loopando 20x
@@ -74,4 +74,5 @@ int main (int argc, char **argv) {
 	}
 
 	return 0;
+
 }
