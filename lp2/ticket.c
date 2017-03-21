@@ -36,16 +36,22 @@ void* secao_critica(void* args) {
  	while (turn[thread_index] != next) {
 		printf("%d - Não é minha vez, fui bloqueada!\n", thread_index);
 	}
+
 	// Protocolo de Entrada - FINAL
 
 	// Seção Crítica - INÍCIO
 	printf("%d - Entrei na seção crítica\n", thread_index);
-	printf("%d - valor da variável global = %d\n", thread_index, ++global_var); // por ser ++global_var ela primeiramente vai incrementar o valor de global_var e em seguida irá imprimí-la. Se você global_var++ seria o contrário
+	/* Por ser ++global_var ela primeiramente vai incrementar o valor de global_var
+	 e em seguida irá imprimí-la.
+	 Se fosse global_var++ seria o contrário */
+	printf("%d - valor da variável global = %d\n", thread_index, ++global_var);
 	printf("%d - Estou saindo da seção crítica...\n", thread_index);
 	// Seção Crítica - FINAL
 
-  // Protocolo de Saída - INÍCIO
-	next++; // O protocolo de saída nesse caso é apenas incrementar o valor de next, para que assim a próxima thread saia da ESPERA OCUPADA e possa executar sua seção crítica
+  /* Protocolo de Saída - INÍCIO
+	O protocolo de saída nesse caso é apenas incrementar o valor de next,
+	para que assim a próxima thread saia da ESPERA OCUPADA e possa executar sua seção crítica */
+	next++;
 	// Protocolo de Saída - FINAL
 
   // Seção não crítica
