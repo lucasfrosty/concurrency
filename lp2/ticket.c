@@ -19,7 +19,7 @@ void* secao_critica(void* args) {
 
 	// Protocolo de Entrada - INÍCIO
 
-	/* Funcionamento do Fetch and Add: (acho que com código fica mais fácil)
+	/* Funcionamento do Fetch and Add:
 	__sync_fetch_and_add(param1, param2) {
 		valor_inicial = param1;
 		param1 = param1 + param2;
@@ -39,6 +39,7 @@ void* secao_critica(void* args) {
 
 	// Seção Crítica - INÍCIO
 	printf("%d - Entrei na seção crítica\n", thread_index);
+
 	/* Por ser ++global_var ela primeiramente vai incrementar o valor de global_var
 	 e em seguida irá imprimí-la.
 	 Se fosse global_var++ seria o contrário */
@@ -51,7 +52,7 @@ void* secao_critica(void* args) {
 	para que assim a próxima thread saia da ESPERA OCUPADA e possa executar sua seção crítica */
 	next++;
 	// Protocolo de Saída - FINAL
-	 
+
 	// Seção não crítica
 	printf("%d - Não estou mais na seção crítica\n", thread_index);
 	return (void*) thread_index; // returna ponteiro pra void pq a função é ponteiro pra void
@@ -62,6 +63,7 @@ int main (int argc, char **argv) {
 
 	printf("Iniciando o programa...\n");
 	int i;
+
 	// Inicializa um array de variáveis do tipo pthread
 	pthread_t threads[NUM_THREADS];
 

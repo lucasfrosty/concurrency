@@ -11,7 +11,7 @@ ____
 
 ##### 3) O que é, em programação concorrente, consistência de memória?
 É a política que determina como e quando mudanças feitas por um processador são vistas pelos outros processadores do sistema. Um modelo de consistência de memória define um contrato entre o software e o sistema de memória, ou seja, se o software obedecer certas regras, o sistema de memória funcionará corretamente.
-Exemplos de modelos:
+Exemplo:
 - **Consistência sequencial:** Quando o resultado de qualquer uma das execuções é equivalente a uma execução entrelaçada em um único processador. A condição necessária para um sistema com acesso de memória atômico seja sequencial é que os acessos de memória sejam feitos na ordem específica do programa.
 ____
 
@@ -94,4 +94,4 @@ ____
 ##### 10) Explique o que são locks (travas) e dê um exemplo de código (código em C/C++) do uso de locks para solução do problema da seção crítica.
 Lock é um mecanismo de sincronização para limitar o acesso a um recurso onde existem múltiplas instâncias de Threads tentando acessá-la.  
 **Como funciona**: Um determinado bloco de código (recurso), quando acessado por uma thread1, tem seu acesso bloqueado pelas outras Threads do processo até que a thread1 termine de utilizar esse recurso, quando isso ocorrer o recurso fica livre e uma (e apenas uma) outra thread poderá utilizá-la. Esse processo pode ocorrer infinitas vezes. Sua implementação pode ser feita através de _Mutex (Exclusão Mútua)_ ou através de _Spinlocks (Sincronização Condicional)_.  
-**Exemplo de código**: TODO (Mutex e Spinlock)
+**Exemplo de código**: 2 exemplos (Spinlock e Algoritmo do Ticket) estão nesse repositório.
