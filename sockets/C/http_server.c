@@ -10,8 +10,7 @@
 #include <netinet/in.h>
 
 
-int main(int argc, char const *argv[])
-{
+int main(int argc, char const *argv[]) {
 	// open a file to server
 	FILE *html_data;
 	html_data = fopen("index.html", "r");

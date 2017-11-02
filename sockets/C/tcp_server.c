@@ -8,8 +8,7 @@
 
 #include <netinet/in.h>
 
-int main(int argc, char const *argv[])
-{
+int main(int argc, char const *argv[]) {
 	char server_message[256] = "You've reached the server!";
 
 	// create the server;

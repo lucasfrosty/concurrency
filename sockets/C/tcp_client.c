@@ -9,8 +9,7 @@
 #include <netinet/in.h>
 
 
-int main(int argc, char const *argv[])
-{
+int main(int argc, char const *argv[]) {
 	// create the socket
 	int network_socket;
 	network_socket = socket(AF_INET, SOCK_STREAM, 0);

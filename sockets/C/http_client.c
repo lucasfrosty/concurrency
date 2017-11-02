@@ -10,8 +10,7 @@
 #include <arpa/inet.h>
 
 
-int main(int argc, char const *argv[])
-{
+int main(int argc, char const *argv[]) {
 	char *address;
 	address = argv[1];
 
